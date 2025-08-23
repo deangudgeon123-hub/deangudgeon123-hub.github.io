@@ -4,9 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dean · AI Automations & Chatbots</title>
+  <meta name="description" content="Self-taught AI innovator from West Sussex. Automations, chatbots, and real-world results. Supported by NHS NIHR & RSS." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="noise"></div>
   <header class="site-header">
     <a class="brand" href="#top"><span class="logo-heart">❤</span> Dean</a>
     <nav class="nav">
@@ -14,12 +19,13 @@
       <a href="#services">Services</a>
       <a href="#about">About</a>
       <a href="#contact" class="pill">Contact</a>
-      <button id="themeToggle" class="toggle">☾</button>
+      <button id="themeToggle" class="toggle" aria-label="Toggle theme">☾</button>
     </nav>
   </header>
 
   <main id="top">
     <section class="hero">
+      <div class="glow"></div>
       <div class="hero-inner">
         <h1><span class="accent">AI that works</span> in the real world.</h1>
         <p class="sub">I build practical automations and chatbots that save time, cut noise and capture leads. Self‑taught from West Sussex. Innovation supported by the NHS system (NIHR & RSS).</p>
@@ -27,6 +33,18 @@
           <a class="btn primary" href="#projects">See projects</a>
           <a class="btn ghost" href="#contact">Start small</a>
         </div>
+        <div class="badges">
+          <span class="badge">NIHR & RSS supported</span>
+          <span class="badge">RunPod · n8n · LLaMA</span>
+          <span class="badge">Fast builds · Clean UX</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="logos">
+      <div class="marquee">
+        <span>n8n</span><span>RunPod</span><span>Zapier</span><span>Telegram</span><span>WhatsApp</span><span>GitHub</span>
+        <span>OpenRouter</span><span>Vercel</span><span>Cloudflare</span>
       </div>
     </section>
 
@@ -38,21 +56,47 @@
     <section id="services" class="section">
       <h2>Services</h2>
       <div class="services grid">
-        <article class="card glass"><h3>AI Email Triage</h3><p>Inbox automation for sorting and replying.</p></article>
-        <article class="card glass"><h3>Customer Chatbots</h3><p>Lead capture + FAQ bots on web/Telegram/WhatsApp.</p></article>
-        <article class="card glass"><h3>Workflow Automation</h3><p>n8n / Zapier builds to glue tools together and cut manual work.</p></article>
+        <article class="card glass">
+          <h3>AI Email Triage</h3>
+          <p>Auto‑classify, tag, and draft replies so your inbox stops owning your day.</p>
+          <ul>
+            <li>Gmail/IMAP integration</li>
+            <li>Priority routing</li>
+            <li>One‑click review</li>
+          </ul>
+        </article>
+        <article class="card glass">
+          <h3>Customer Chatbots</h3>
+          <p>Lead capture + FAQ bots on web/Telegram/WhatsApp that reply 24/7.</p>
+          <ul>
+            <li>Brand tone & guardrails</li>
+            <li>Handoff to human</li>
+            <li>Analytics & transcripts</li>
+          </ul>
+        </article>
+        <article class="card glass">
+          <h3>Workflow Automation</h3>
+          <p>Glue tools together (Sheets, CRMs, forms) to remove repetitive tasks.</p>
+          <ul>
+            <li>n8n / Zapier builds</li>
+            <li>Error handling</li>
+            <li>Docs & training</li>
+          </ul>
+        </article>
       </div>
     </section>
 
     <section id="about" class="section about">
-      <h2>About</h2>
-      <p>I prefer shipping over showboating. Start small, prove value in a week, then scale.</p>
+      <div class="about-wrap">
+        <h2>About</h2>
+        <p>I prefer shipping over showboating. Start small, prove value in a week, then scale. If you're my first client in a new area, you get extra hands‑on attention to make sure it lands right.</p>
+      </div>
     </section>
 
     <section id="contact" class="section contact">
       <h2>Contact</h2>
       <p>Want a quick win? Let’s start with one tiny automation and build from there.</p>
-      <a class="btn primary" href="mailto:youremail@example.com">Email me</a>
+      <a class="btn primary" href="mailto:youremail@example.com?subject=AI%20Automation%20/ %20Chatbot%20Project">Email me</a>
     </section>
   </main>
 
