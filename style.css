@@ -17,8 +17,6 @@ h1, h2 { font-family: "Space Grotesk", Inter, system-ui, sans-serif; }
   padding: 14px 20px; background: rgba(12,11,19,.72); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
 html[data-theme='light'] .site-header { background: rgba(247,247,248,.86); }
 .brand { font-weight: 800; letter-spacing: .3px; text-decoration: none; color: var(--text); display: flex; align-items: center; gap: 8px; }
-.logo-heart { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 6px;
-  background: linear-gradient(120deg, var(--accent), var(--accent-2)); color: #fff; font-size: 12px; box-shadow: 0 6px 18px rgba(154,134,255,.35); }
 .nav a { margin-left: 14px; text-decoration: none; color: var(--text); opacity: .9; }
 .nav .pill { border: 1px solid var(--line); padding: 6px 12px; border-radius: 999px; }
 .toggle { margin-left: 12px; background: transparent; border: 1px solid var(--line); color: var(--text); padding: 6px 10px; border-radius: 10px; cursor: pointer; }
