@@ -1,0 +1,1 @@
+document.getElementById('project-grid').innerHTML='<p>Project cards go here</p>'
