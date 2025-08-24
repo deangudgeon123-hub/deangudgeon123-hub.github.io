@@ -65,6 +65,9 @@ h1 .accent { background: linear-gradient(90deg, var(--accent), var(--accent-2));
 .project-card .stack { font-size: 13px; color: var(--muted); }
 .project-card a.more { display: inline-block; margin-top: 6px; font-weight: 600; color: var(--accent); text-decoration: none; }
 
+.card-link { text-decoration: none; color: inherit; display: block; }
+.card-link:hover { border-color: rgba(154,134,255,.5); transform: translateY(-2px); }
+
 .about { background: var(--panel); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .about-wrap { max-width: 820px; margin: 0 auto; }
 .about-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 24px; line-height: 1.6; }
@@ -84,5 +87,5 @@ h1 .accent { background: linear-gradient(90deg, var(--accent), var(--accent-2));
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
-  .card:hover, .btn:hover { transform: none; box-shadow: none; }
+  .card:hover, .btn:hover, .card-link:hover { transform: none; box-shadow: none; }
 }
