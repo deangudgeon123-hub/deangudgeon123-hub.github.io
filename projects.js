@@ -1,7 +1,7 @@
 const projects = [
   { title: "MedBot — Health Assistant Prototype",
     desc: "Chatbot demo built on RunPod for safe Q&A and triage-style guidance while users wait for appointments.",
-    stack: "RunPod · LLM API · JavaScript", image: "assets/medbot-thumb.jpg", link: "medbot.html" },
+    stack: "RunPod · LLM API · JavaScript", image: "medbot-thumb.png?v=1", link: "medbot.html" },
   { title: "Email Triage Automation",
     desc: "n8n workflow that classifies incoming emails, tags them, and drafts suggested replies to speed up responses.",
     stack: "n8n · LLM · Gmail API (or IMAP)", image: "assets/email-thumb.jpg", link: "email-triage.html" },
