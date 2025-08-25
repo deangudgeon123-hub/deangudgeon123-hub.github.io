@@ -16,13 +16,20 @@
   }
   const year=document.getElementById('year');
   if(year) year.textContent=new Date().getFullYear();
-  const menu=document.getElementById('menuToggle');
-  const nav=document.getElementById('site-nav');
-  if(menu && nav){
-    menu.addEventListener('click',()=>{
-      const expanded=menu.getAttribute('aria-expanded')==='true';
-      menu.setAttribute('aria-expanded',!expanded);
-      nav.classList.toggle('open');
+  const toggle=document.getElementById('navToggle');
+  const nav=document.getElementById('navMenu');
+  const overlay=document.querySelector('.nav-overlay');
+  const close=()=>{
+    document.body.classList.remove('nav-open');
+    if(toggle) toggle.setAttribute('aria-expanded','false');
+  };
+  if(toggle && nav){
+    toggle.addEventListener('click',()=>{
+      const open=document.body.classList.toggle('nav-open');
+      toggle.setAttribute('aria-expanded',open);
     });
+    overlay&&overlay.addEventListener('click',close);
+    nav.addEventListener('click',e=>{if(e.target.tagName==='A') close();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape') close();});
   }
 })();
