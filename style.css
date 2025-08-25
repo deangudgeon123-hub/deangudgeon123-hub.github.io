@@ -20,6 +20,7 @@ html[data-theme='light'] .site-header{background:rgba(247,247,248,.86)}
 .brand-dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(90deg,var(--accent),var(--accent-2));margin-left:6px}
 .menu-toggle{display:none;background:none;border:1px solid var(--line);border-radius:8px;padding:6px 8px;color:var(--text)}
 .nav{display:flex;align-items:center;gap:16px}
+.nav-overlay{display:none}
 .nav a{text-decoration:none;opacity:.9}
 .nav .pill{border:1px solid var(--line);padding:6px 12px;border-radius:999px}
 .toggle{width:40px;height:24px;border:1px solid var(--line);border-radius:12px;background:var(--panel);cursor:pointer;font-size:0;color:transparent;position:relative}
@@ -65,10 +66,14 @@ html[data-theme='light'] .toggle::after{transform:translateX(18px)}
 .contact{text-align:center}
 .site-footer{text-align:center;padding:30px 20px;color:var(--muted);border-top:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
 .footer-nav{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
-@media (max-width:768px){
-  .menu-toggle{display:block}
-  .nav{display:none;flex-direction:column;align-items:flex-start;width:100%;margin-top:10px}
-  .nav.open{display:flex}
+@media (max-width:900px){
+  #navToggle{display:block}
+  #navMenu{position:fixed;top:60px;left:0;right:0;bottom:0;background:rgba(12,11,19,.92);backdrop-filter:blur(10px);display:flex;flex-direction:column;align-items:flex-start;gap:16px;padding:20px;transform:translateY(-100%);transition:transform .3s ease;overflow:auto;z-index:100}
+  body.nav-open #navMenu{transform:translateY(0)}
+  .nav-overlay{display:block;position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(2px);opacity:0;visibility:hidden;transition:opacity .3s ease;z-index:99}
+  body.nav-open .nav-overlay{opacity:1;visibility:visible}
+  body.nav-open{overflow:hidden}
+  .site-header .brand,.site-header #navToggle{position:relative;z-index:101}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition:none!important;animation:none!important}
