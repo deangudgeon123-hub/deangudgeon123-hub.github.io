@@ -46,9 +46,9 @@ h1 .accent { background: linear-gradient(90deg, var(--accent), var(--accent-2));
 .badges { display: flex; gap: 10px; justify-content: center; margin-top: 16px; flex-wrap: wrap; }
 .badge { font-size: 12px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px; opacity: .9; }
 
-.logos { padding: 18px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(255,255,255,0.02); }
-.marquee { display: flex; gap: 50px; overflow: hidden; white-space: nowrap; animation: scroll 22s linear infinite; padding: 8px 0; opacity: .7; }
-.marquee span { font-weight: 600; }
+.logos { padding: 18px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(255,255,255,0.02); overflow: hidden; }
+.marquee { display: flex; gap: 50px; animation: scroll 22s linear infinite; padding: 8px 0; opacity: .7; width: max-content; }
+.marquee span { font-weight: 600; white-space: nowrap; }
 @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 .section { padding: 72px 20px; max-width: 1200px; margin: 0 auto; }

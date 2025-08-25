@@ -3,8 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dean · AI Automations & Chatbots</title>
-  <meta name="description" content="Self-taught AI innovator from West Sussex. Automations, chatbots, and real-world results. Supported by NHS NIHR & RSS." />
+  <title>Dean Gudgeon · AI Automations & Chatbots</title>
+  <meta name="description" content="Self-taught AI innovator from West Sussex. Automations, chatbots, and real-world results supported by NHS NIHR & RSS." />
+  <meta property="og:title" content="Dean Gudgeon · AI Automations & Chatbots">
+  <meta property="og:description" content="Self-taught AI innovator from West Sussex. Automations, chatbots, and real-world results supported by NHS NIHR & RSS.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="/index.html">
+  <meta property="og:image" content="assets/favicon.svg">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -109,5 +114,11 @@
 
   <script src="projects.js"></script>
   <script src="theme.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const marquee = document.querySelector('.marquee');
+      if (marquee) marquee.innerHTML += marquee.innerHTML;
+    });
+  </script>
 </body>
 </html>
