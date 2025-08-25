@@ -34,74 +34,70 @@
   }
 })();
 
-(function(){
-  const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const canvas = document.getElementById('bg-squares');
-  if (!canvas || mql.matches) return;
+(function () {
+  function initGrid(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
 
-  const ctx = canvas.getContext('2d');
-  const ACCENT = getComputedStyle(document.documentElement)
-                  .getPropertyValue('--accent').trim() || '#a78bfa';
+    const dpi = Math.min(window.devicePixelRatio || 1, 2);
+    const ctx = el.getContext('2d');
+    const style = getComputedStyle(document.documentElement);
+    const ACCENT = style.getPropertyValue('--accent').trim() || '#8b5cf6';
 
-  let w, h, dpr, cols, rows, size, gap;
-  const cells = [];
+    let w, h, cell, cols, rows, t = 0;
 
-  function resize(){
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    w = canvas.width  = Math.floor(innerWidth  * dpr);
-    h = canvas.height = Math.floor(innerHeight * dpr);
-    canvas.style.width  = innerWidth + 'px';
-    canvas.style.height = innerHeight + 'px';
-
-    size = 20 * dpr;
-    gap  = 10 * dpr;
-    cols = Math.ceil(w / (size + gap));
-    rows = Math.ceil(h / (size + gap));
-
-    cells.length = 0;
-    for (let y = 0; y < rows; y++){
-      for (let x = 0; x < cols; x++){
-        cells.push({ x, y, a: 0, t: Math.random() * 2000 });
-      }
+    function resize() {
+      const box = el.getBoundingClientRect();
+      w = Math.floor(box.width);
+      h = Math.floor(box.height);
+      cell = Math.max(14, Math.min(28, Math.round(w / 36)));
+      cols = Math.ceil(w / cell);
+      rows = Math.ceil(h / cell);
+      el.width = w * dpi;
+      el.height = h * dpi;
+      ctx.setTransform(dpi, 0, 0, dpi, 0, 0);
+      ctx.clearRect(0, 0, w, h);
     }
-  }
 
-  function hexToRgba(hex, a){
-    const h = hex.replace('#','');
-    const full = h.length === 3 ? h.split('').map(c => c+c).join('') : h;
-    const n = parseInt(full, 16);
-    const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
-    return `rgba(${r},${g},${b},${a})`;
-  }
+    window.addEventListener('resize', resize, { passive: true });
+    resize();
 
-  function frame(t){
-    ctx.clearRect(0,0,w,h);
-
-    for (const c of cells){
-      const pulse = (Math.sin((t + c.t)/1000 + (c.x*13 + c.y*7)) + 1) * 0.5;
-      c.a = c.a * 0.90 + pulse * 0.10;
-
-      if (c.a > 0.05){
-        const X = Math.floor(c.x * (size + gap));
-        const Y = Math.floor(c.y * (size + gap));
-        const S = size * 0.6;
-        ctx.fillStyle = hexToRgba(ACCENT, 0.15 * c.a);
-        ctx.fillRect(X, Y, S, S);
-      }
+    function rnd(i, j, k = 1) {
+      return Math.abs(Math.sin(i * 12.9898 + j * 78.233 + k)) % 1;
     }
-    requestAnimationFrame(frame);
+
+    function tick() {
+      ctx.clearRect(0, 0, w, h);
+
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          const p = rnd(x, y, Math.floor(t / 20)) * 1.2;
+          if (p > 1.05) {
+            const alpha = 0.08 + (p - 1.05) * 0.8;
+            ctx.fillStyle = hexWithAlpha(ACCENT, alpha);
+            const s = cell * 0.42;
+            ctx.fillRect(x * cell + cell * 0.29, y * cell + cell * 0.29, s, s);
+            ctx.fillStyle = hexWithAlpha(ACCENT, alpha * 0.35);
+            ctx.fillRect(x * cell + cell * 0.22, y * cell + cell * 0.22, s * 1.3, s * 1.3);
+          }
+        }
+      }
+      t++;
+      setTimeout(() => requestAnimationFrame(tick), 1000 / 24);
+    }
+
+    function hexWithAlpha(hex, a) {
+      let c = hex.replace('#', '');
+      if (c.length === 3) c = c.split('').map(s => s + s).join('');
+      const r = parseInt(c.slice(0, 2), 16);
+      const g = parseInt(c.slice(2, 4), 16);
+      const b = parseInt(c.slice(4, 6), 16);
+      return `rgba(${r}, ${g}, ${b}, ${a})`;
+    }
+
+    requestAnimationFrame(tick);
   }
 
-  window.addEventListener('resize', resize, { passive: true });
-  resize();
-  requestAnimationFrame(frame);
-
-  try {
-    mql.addEventListener?.('change', e => {
-      if (e.matches) {
-        ctx.clearRect(0,0,w,h);
-        canvas.remove();
-      }
-    });
-  } catch(_) {}
+  initGrid('heroGrid');
+  initGrid('footerGrid');
 })();
