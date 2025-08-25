@@ -1,74 +1,90 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI Automation Services | Dean Gudgeon</title>
-  <meta name="description" content="Custom AI email triage, customer chatbots, and workflow automation services." />
-  <meta property="og:title" content="AI Automation Services" />
-  <meta property="og:description" content="Custom AI email triage, customer chatbots, and workflow automation services." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="/services.html" />
-  <meta property="og:image" content="assets/favicon.svg" />
+  <meta name="description" content="Starter, Pro, and Custom packages for AI email triage, chatbots, and workflow automation.">
+  <meta property="og:title" content="AI Automation Services">
+  <meta property="og:description" content="Starter, Pro, and Custom packages for AI email triage, chatbots, and workflow automation.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="/services.html">
+  <meta property="og:image" content="assets/og-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Automation Services">
+  <meta name="twitter:description" content="Starter, Pro, and Custom packages for AI email triage, chatbots, and workflow automation.">
+  <meta name="twitter:image" content="assets/og-cover.jpg">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="noise"></div>
+  <div class="noise" aria-hidden="true"></div>
+  <a href="#content" class="skip-link">Skip to content</a>
   <header class="site-header">
-    <a class="brand" href="index.html#top"><span class="brand-dean">Dean</span> <span class="brand-last">Gudgeon</span></a>
-    <nav class="nav">
+    <a class="brand" href="index.html">Dean Gudgeon<span class="brand-dot"></span></a>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="site-nav">☰</button>
+    <nav id="site-nav" class="nav">
       <a href="index.html#projects">Projects</a>
-      <a href="index.html#services">Services</a>
-      <a href="index.html#about">About</a>
-      <a href="index.html#contact" class="pill">Contact</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="pill">Contact</a>
       <button id="themeToggle" class="toggle" aria-label="Toggle theme">☾</button>
     </nav>
   </header>
-
-  <main id="top">
-    <section class="section" style="max-width:980px;">
-      <h1>AI Automation Services</h1>
-      <p class="sub">Start small and scale fast with lightweight automations and chatbots built for real results.</p>
+  <main id="content">
+    <section class="section">
+      <div class="container">
+        <h1>Services</h1>
+        <p class="sub">Start small and scale with lightweight automations and chatbots built for real results.</p>
+      </div>
     </section>
-
-    <section class="section" style="max-width:980px;">
-      <div class="services grid">
-        <article id="email-triage" class="card glass">
-          <h3>AI Email Triage</h3>
-          <p>Auto‑classify, tag, and draft replies so your inbox stops owning your day.</p>
+    <section class="section">
+      <div class="container grid services">
+        <article class="card">
+          <h3>Starter</h3>
+          <p>One automation or chatbot to prove value.</p>
           <ul>
-            <li>Gmail/IMAP integration</li>
-            <li>Priority routing</li>
-            <li>One‑click review</li>
+            <li>Scoped to one workflow</li>
+            <li>Fast turnaround</li>
+            <li>Docs &amp; handoff</li>
           </ul>
         </article>
-        <article class="card glass">
-          <h3>Customer Chatbots</h3>
-          <p>Lead capture + FAQ bots on web/Telegram/WhatsApp that reply 24/7.</p>
+        <article class="card">
+          <h3>Pro</h3>
+          <p>Deeper integration and custom flows.</p>
           <ul>
-            <li>Brand tone &amp; guardrails</li>
-            <li>Handoff to human</li>
-            <li>Analytics &amp; transcripts</li>
+            <li>Multi-step automations</li>
+            <li>Custom prompts</li>
+            <li>Support channel</li>
           </ul>
         </article>
-        <article class="card glass">
-          <h3>Workflow Automation</h3>
-          <p>Glue tools together (Sheets, CRMs, forms) to remove repetitive tasks.</p>
+        <article class="card">
+          <h3>Custom</h3>
+          <p>Bespoke builds for unique needs.</p>
           <ul>
-            <li>n8n / Zapier builds</li>
-            <li>Error handling</li>
-            <li>Docs &amp; training</li>
+            <li>Discovery session</li>
+            <li>Flexible stack</li>
+            <li>Ongoing iteration</li>
           </ul>
         </article>
       </div>
     </section>
+    <section class="section contact">
+      <div class="container">
+        <div class="cta-row">
+          <a class="btn primary" href="mailto:dean.gudgeon123@gmail.com?subject=Project%20inquiry">Let's work together</a>
+        </div>
+      </div>
+    </section>
   </main>
-
-  <footer class="site-footer"><p>© 2025 Dean · Self‑taught AI innovator · West Sussex</p></footer>
+  <footer class="site-footer">
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="https://github.com/deangudgeon123-hub">GitHub</a>
+      <a href="https://t.me/">Telegram</a>
+      <a href="mailto:dean.gudgeon123@gmail.com">Email</a>
+    </nav>
+    <p>© <span id="year"></span> Dean Gudgeon</p>
+  </footer>
   <script src="theme.js"></script>
 </body>
 </html>
-
