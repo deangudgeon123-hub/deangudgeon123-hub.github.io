@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Email Triage Automation | Dean Gudgeon</title>
-  <meta name="description" content="Workflow that classifies emails, tags them, and drafts replies to speed up responses.">
-  <meta property="og:title" content="Email Triage Automation">
-  <meta property="og:description" content="Workflow that classifies emails, tags them, and drafts replies to speed up responses.">
+  <title>Email Triage — Dean Gudgeon</title>
+  <meta name="description" content="Workflow that ingests email, classifies it, and drafts replies using n8n or Zapier plus an LLM.">
+  <link rel="canonical" href="/email-triage.html">
+  <meta property="og:title" content="Email Triage — Dean Gudgeon">
+  <meta property="og:description" content="Workflow that ingests email, classifies it, and drafts replies using n8n or Zapier plus an LLM.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="/email-triage.html">
   <meta property="og:image" content="assets/og-cover.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Email Triage Automation">
-  <meta name="twitter:description" content="Workflow that classifies emails, tags them, and drafts replies to speed up responses.">
+  <meta name="twitter:title" content="Email Triage — Dean Gudgeon">
+  <meta name="twitter:description" content="Workflow that ingests email, classifies it, and drafts replies using n8n or Zapier plus an LLM.">
   <meta name="twitter:image" content="assets/og-cover.jpg">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
@@ -21,11 +22,13 @@
   <div class="noise" aria-hidden="true"></div>
   <a href="#content" class="skip-link">Skip to content</a>
   <header class="site-header">
-    <a class="brand" href="index.html">Dean Gudgeon<span class="brand-dot"></span></a>
+    <a class="brand" href="/">Dean Gudgeon<span class="dot"></span></a>
     <button id="navToggle" class="menu-toggle" aria-controls="navMenu" aria-expanded="false">☰</button>
     <nav id="navMenu" class="nav">
+      <a href="index.html">Home</a>
       <a href="index.html#projects">Projects</a>
       <a href="services.html">Services</a>
+      <a href="addons.html">Add-ons</a>
       <a href="about.html">About</a>
       <a href="contact.html" class="pill">Contact</a>
       <button id="themeToggle" class="toggle" aria-label="Toggle theme">☾</button>
@@ -36,46 +39,39 @@
     <section class="section">
       <div class="container">
         <h1>Email Triage Automation</h1>
-        <p class="sub">n8n workflow that classifies incoming emails, tags them, and drafts suggested replies so your inbox stops owning your day.</p>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container">
-        <div class="project-thumb placeholder">Preview coming soon</div>
+        <p class="sub">n8n or Zapier flow that sorts your inbox and drafts replies automatically.</p>
+        <div class="project-thumb placeholder-thumb">Preview coming soon</div>
       </div>
     </section>
     <section class="section">
       <div class="container grid">
         <article class="card">
-          <h3>What it does</h3>
+          <h3>Flow</h3>
           <ul>
-            <li>Pulls emails via Gmail or IMAP.</li>
-            <li>Classifies and tags priority.</li>
-            <li>Drafts replies for one-click review.</li>
+            <li>Ingest Gmail or IMAP</li>
+            <li>Classify and tag</li>
+            <li>Route to folders or teammates</li>
+            <li>Draft reply with LLM</li>
           </ul>
         </article>
         <article class="card">
-          <h3>Tech stack</h3>
+          <h3>Tools</h3>
           <ul>
-            <li>n8n</li>
+            <li>n8n or Zapier</li>
             <li>LLM API</li>
             <li>Gmail API / IMAP</li>
           </ul>
         </article>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container">
         <article class="card">
           <h3>Outcome</h3>
-          <p>Inbox triage goes from hours to minutes, freeing time for higher-value work.</p>
+          <p>Inbox triage goes from hours to minutes.</p>
         </article>
       </div>
     </section>
     <section class="section contact">
       <div class="container">
         <div class="cta-row">
-          <a class="btn ghost" href="index.html#projects">Back to projects</a>
+          <a class="btn ghost" href="contact.html">Book a chat about this</a>
         </div>
       </div>
     </section>
@@ -85,8 +81,10 @@
       <a href="https://github.com/deangudgeon123-hub">GitHub</a>
       <a href="https://t.me/">Telegram</a>
       <a href="mailto:dean.gudgeon123@gmail.com">Email</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="404.html">404</a>
     </nav>
-    <p>© <span id="year"></span> Dean Gudgeon</p>
+    <p>© Dean Gudgeon — Last updated <span id="year"></span></p>
   </footer>
   <script src="theme.js"></script>
 </body>

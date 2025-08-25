@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact Dean Gudgeon</title>
+  <title>Contact — Dean Gudgeon</title>
   <meta name="description" content="Get in touch via email or the contact form.">
-  <meta property="og:title" content="Contact Dean Gudgeon">
+  <link rel="canonical" href="/contact.html">
+  <meta property="og:title" content="Contact — Dean Gudgeon">
   <meta property="og:description" content="Get in touch via email or the contact form.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="/contact.html">
   <meta property="og:image" content="assets/og-cover.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Contact Dean Gudgeon">
+  <meta name="twitter:title" content="Contact — Dean Gudgeon">
   <meta name="twitter:description" content="Get in touch via email or the contact form.">
   <meta name="twitter:image" content="assets/og-cover.jpg">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -21,11 +22,13 @@
   <div class="noise" aria-hidden="true"></div>
   <a href="#content" class="skip-link">Skip to content</a>
   <header class="site-header">
-    <a class="brand" href="index.html">Dean Gudgeon<span class="brand-dot"></span></a>
+    <a class="brand" href="/">Dean Gudgeon<span class="dot"></span></a>
     <button id="navToggle" class="menu-toggle" aria-controls="navMenu" aria-expanded="false">☰</button>
     <nav id="navMenu" class="nav">
+      <a href="index.html">Home</a>
       <a href="index.html#projects">Projects</a>
       <a href="services.html">Services</a>
+      <a href="addons.html">Add-ons</a>
       <a href="about.html">About</a>
       <a href="contact.html" class="pill">Contact</a>
       <button id="themeToggle" class="toggle" aria-label="Toggle theme">☾</button>
@@ -36,19 +39,37 @@
     <section class="section">
       <div class="container">
         <h1>Contact</h1>
-        <p class="sub">Drop a message via email or the form.</p>
+        <p class="sub">Drop a message via the form or book a quick call.</p>
         <div class="cta-row">
           <a class="btn outline" href="mailto:dean.gudgeon123@gmail.com">Email me</a>
+          <a class="btn ghost" href="mailto:dean.gudgeon123@gmail.com?subject=15%20min%20call">Book a 15-min call</a>
         </div>
         <form action="https://formspree.io/f/placeholder" method="POST" class="card" style="margin-top:24px;">
-          <label>Email
+          <label>Name
+            <input type="text" name="name" required style="width:100%;margin-top:6px;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--text);">
+          </label>
+          <label style="margin-top:12px;">Email
             <input type="email" name="email" required style="width:100%;margin-top:6px;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--text);">
           </label>
           <label style="margin-top:12px;">Message
             <textarea name="message" required rows="4" style="width:100%;margin-top:6px;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--text);"></textarea>
           </label>
+          <input type="text" name="_honeypot" style="display:none">
           <button class="btn primary" type="submit" style="margin-top:12px;">Send</button>
         </form>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <h2>FAQ</h2>
+        <dl class="faq">
+          <dt>How long does it take?</dt>
+          <dd>Most starter projects ship in about a week.</dd>
+          <dt>What does it cost?</dt>
+          <dd>Starter work begins around £X; custom quotes available.</dd>
+          <dt>Do I need technical knowledge?</dt>
+          <dd>No—I'll guide you through setup and handover.</dd>
+        </dl>
       </div>
     </section>
   </main>
@@ -57,8 +78,10 @@
       <a href="https://github.com/deangudgeon123-hub">GitHub</a>
       <a href="https://t.me/">Telegram</a>
       <a href="mailto:dean.gudgeon123@gmail.com">Email</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="404.html">404</a>
     </nav>
-    <p>© <span id="year"></span> Dean Gudgeon</p>
+    <p>© Dean Gudgeon — Last updated <span id="year"></span></p>
   </footer>
   <script src="theme.js"></script>
 </body>
