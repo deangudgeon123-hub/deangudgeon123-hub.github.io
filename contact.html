@@ -19,14 +19,12 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <canvas id="bg-squares" aria-hidden="true"></canvas>
   <div class="noise" aria-hidden="true"></div>
   <a href="#content" class="skip-link">Skip to content</a>
   <header class="site-header">
     <a class="brand" href="/">Dean Gudgeon<span class="dot"></span></a>
     <button id="navToggle" class="menu-toggle" aria-controls="navMenu" aria-expanded="false">☰</button>
     <nav id="navMenu" class="nav">
-      <a href="index.html">Home</a>
       <a href="index.html#projects">Projects</a>
       <a href="services.html">Services</a>
       <a href="addons.html">Add-ons</a>
@@ -60,18 +58,20 @@
         </form>
       </div>
     </section>
-    <section class="section">
-      <div class="container">
-        <h2>FAQ</h2>
-        <dl class="faq">
-          <dt>How long does it take?</dt>
-          <dd>Most starter projects ship in about a week.</dd>
-          <dt>What does it cost?</dt>
-          <dd>Starter work begins around £X; custom quotes available.</dd>
-          <dt>Do I need technical knowledge?</dt>
-          <dd>No—I'll guide you through setup and handover.</dd>
-        </dl>
-      </div>
+    <section id="faq" class="faq container">
+      <h2>FAQ</h2>
+
+      <h3>How long does it take?</h3>
+      <p>Starter projects usually ship within a week. Pilots with data integrations can take 2–4 weeks.</p>
+
+      <h3>What does it cost?</h3>
+      <p>Starter work begins around £X. Most pilots land between £X–£Y depending on scope and integrations.</p>
+
+      <h3>Do I need to be technical?</h3>
+      <p>Nope. I set things up, hand over with a short walkthrough, and you can message me if you get stuck.</p>
+
+      <h3>What tools do you use?</h3>
+      <p>Whatever fits the job: n8n/Zapier for glue, RunPod for GPU jobs, Telegram/Email for interfaces, LLMs for brains.</p>
     </section>
   </main>
   <footer class="site-footer">
