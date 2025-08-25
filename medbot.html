@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MedBot — Health Assistant Prototype | Dean Gudgeon</title>
+  <title>MedBot — Dean Gudgeon</title>
   <meta name="description" content="Chat interface for safe Q&A and triage-style guidance while users wait for appointments.">
-  <meta property="og:title" content="MedBot — Health Assistant Prototype">
+  <link rel="canonical" href="/medbot.html">
+  <meta property="og:title" content="MedBot — Dean Gudgeon">
   <meta property="og:description" content="Chat interface for safe Q&A and triage-style guidance while users wait for appointments.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="/medbot.html">
   <meta property="og:image" content="assets/og-cover.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MedBot — Health Assistant Prototype">
+  <meta name="twitter:title" content="MedBot — Dean Gudgeon">
   <meta name="twitter:description" content="Chat interface for safe Q&A and triage-style guidance while users wait for appointments.">
   <meta name="twitter:image" content="assets/og-cover.jpg">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -21,11 +22,13 @@
   <div class="noise" aria-hidden="true"></div>
   <a href="#content" class="skip-link">Skip to content</a>
   <header class="site-header">
-    <a class="brand" href="index.html">Dean Gudgeon<span class="brand-dot"></span></a>
+    <a class="brand" href="/">Dean Gudgeon<span class="dot"></span></a>
     <button id="navToggle" class="menu-toggle" aria-controls="navMenu" aria-expanded="false">☰</button>
     <nav id="navMenu" class="nav">
+      <a href="index.html">Home</a>
       <a href="index.html#projects">Projects</a>
       <a href="services.html">Services</a>
+      <a href="addons.html">Add-ons</a>
       <a href="about.html">About</a>
       <a href="contact.html" class="pill">Contact</a>
       <button id="themeToggle" class="toggle" aria-label="Toggle theme">☾</button>
@@ -36,47 +39,31 @@
     <section class="section">
       <div class="container">
         <h1>MedBot — Health Assistant Prototype</h1>
-        <p class="sub">Chat interface for safe Q&amp;A and triage-style guidance. Built to run quickly on RunPod with guardrails and human handoff.</p>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container">
-        <div class="project-thumb placeholder">Preview coming soon</div>
+        <p class="sub">Chat interface for safe Q&amp;A and triage-style guidance.</p>
+        <div class="project-thumb placeholder-thumb">Preview coming soon</div>
       </div>
     </section>
     <section class="section">
       <div class="container grid">
         <article class="card">
-          <h3>What it does</h3>
-          <ul>
-            <li>Greets users and collects basic intent safely.</li>
-            <li>Routes to information, forms, or human follow-up.</li>
-            <li>Keeps tone consistent; logs transcripts for review.</li>
-          </ul>
+          <h3>Problem</h3>
+          <p>Patients wait on hold for basic info while staff handle repetitive questions.</p>
         </article>
         <article class="card">
-          <h3>Tech stack</h3>
-          <ul>
-            <li>RunPod + LLM API</li>
-            <li>Guardrails &amp; prompt templates</li>
-            <li>Optional: Telegram / Web widget</li>
-          </ul>
+          <h3>Approach</h3>
+          <p>RunPod-hosted bot with guardrails collects intent, offers resources, and escalates to humans when needed.</p>
         </article>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container">
         <article class="card">
-          <h3>Outcome</h3>
-          <p>Faster responses for common questions, better data capture for follow-ups, and a foundation for automation.</p>
+          <h3>Result</h3>
+          <p>Faster answers for common queries and a pilot-ready base for secure deployment.</p>
         </article>
       </div>
     </section>
     <section class="section contact">
       <div class="container">
         <div class="cta-row">
-          <a class="btn primary" href="mailto:dean.gudgeon123@gmail.com?subject=MedBot">Talk about MedBot</a>
-          <a class="btn ghost" href="index.html#projects">Back to projects</a>
+          <a class="btn primary" href="contact.html">Contact to discuss a pilot</a>
+          <a class="btn ghost" href="contact.html">Book a chat about this</a>
         </div>
       </div>
     </section>
@@ -86,8 +73,10 @@
       <a href="https://github.com/deangudgeon123-hub">GitHub</a>
       <a href="https://t.me/">Telegram</a>
       <a href="mailto:dean.gudgeon123@gmail.com">Email</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="404.html">404</a>
     </nav>
-    <p>© <span id="year"></span> Dean Gudgeon</p>
+    <p>© Dean Gudgeon — Last updated <span id="year"></span></p>
   </footer>
   <script src="theme.js"></script>
 </body>
