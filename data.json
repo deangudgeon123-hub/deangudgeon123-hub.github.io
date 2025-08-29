@@ -1,0 +1,64 @@
+{
+  "categories": [
+    {"id": "uk-tops", "title": "UK TOPs", "emoji": "🇬🇧"},
+    {"id": "uk-mids", "title": "UK MIDs", "emoji": "🇬🇧"},
+    {"id": "standards", "title": "STANDARDs", "emoji": "📦"},
+    {"id": "extracts", "title": "EXTRACTs", "emoji": "🧪"},
+    {"id": "hashs", "title": "HASHs", "emoji": "#️⃣"}
+  ],
+  "items": [
+    {
+      "id": "oreo",
+      "categoryId": "uk-tops",
+      "title": "Oreo Blizzard",
+      "image": "images/oreo.jpg",
+      "description": "Ice Cream Cake x Sunset Sherbet",
+      "prices": [
+        {"label": "3.5g", "amount": "£30"},
+        {"label": "7g", "amount": "£60"}
+      ]
+    },
+    {
+      "id": "blueberry",
+      "categoryId": "uk-mids",
+      "title": "Blueberry Muffin",
+      "image": "images/blueberry.jpg",
+      "description": "Classic mid-shelf favourite.",
+      "prices": [
+        {"label": "3.5g", "amount": "£20"},
+        {"label": "7g", "amount": "£40"}
+      ]
+    },
+    {
+      "id": "standard-kush",
+      "categoryId": "standards",
+      "title": "Standard Kush",
+      "image": "images/standard-kush.jpg",
+      "description": "Solid everyday smoke.",
+      "prices": [
+        {"label": "3.5g", "amount": "£15"},
+        {"label": "7g", "amount": "£30"}
+      ]
+    },
+    {
+      "id": "rosin",
+      "categoryId": "extracts",
+      "title": "Live Rosin",
+      "image": "images/rosin.jpg",
+      "description": "Solventless extract for purists.",
+      "prices": [
+        {"label": "1g", "amount": "£40"}
+      ]
+    },
+    {
+      "id": "bubble-hash",
+      "categoryId": "hashs",
+      "title": "Bubble Hash",
+      "image": "images/bubble-hash.jpg",
+      "description": "Full melt hash.",
+      "prices": [
+        {"label": "1g", "amount": "£10"}
+      ]
+    }
+  ]
+}
