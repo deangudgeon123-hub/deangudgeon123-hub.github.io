@@ -1,126 +1,165 @@
-// Simple hash-based router for Telegram Mini App
-let dataCache = null;
-
-// Load data.json once and cache it
-async function loadData() {
-  if (!dataCache) {
-    const res = await fetch('data.json');
-    dataCache = await res.json();
+const strains = [
+  {
+    id: "peanut-butter-breath",
+    name: "Peanut Butter Breath",
+    emoji: "🥜🍞😮‍💨",
+    photo: "https://placehold.co/800x500?text=Peanut+Butter+Breath",
+    looks: null,
+    nose: null,
+    smoothness: null,
+    flavour: { citrus: 0, fruit: 0, gas: 0, earthy: 2, herbal: 1, spicy: 0, dessert: 2, pine: 0 },
+    dominant: "Peanut butter nuttiness with earthy backend.",
+    terp: "caryophyllene + limonene",
+    verdict: "Classic nutty cut, smooth."
+  },
+  {
+    id: "black-maple",
+    name: "Black Maple",
+    emoji: "⚫🍁🍯",
+    photo: "https://placehold.co/800x500?text=Black+Maple",
+    looks: null,
+    nose: null,
+    smoothness: null,
+    flavour: { citrus: 0, fruit: 0, gas: 0, earthy: 2, herbal: 1, spicy: 0, dessert: 2, pine: 0 },
+    dominant: "Dark maple syrup with woody hashy notes.",
+    terp: "humulene + caryophyllene",
+    verdict: "Sweet + earthy, couchy vibes."
+  },
+  {
+    id: "miami-vice",
+    name: "Miami Vice",
+    emoji: "🏙️🌴🔥",
+    photo: "https://placehold.co/800x500?text=Miami+Vice",
+    looks: null,
+    nose: null,
+    smoothness: null,
+    flavour: { citrus: 2, fruit: 1, gas: 2, earthy: 0, herbal: 0, spicy: 1, dessert: 0, pine: 0 },
+    dominant: "Zesty lime with tropical gas.",
+    terp: "limonene + myrcene",
+    verdict: "Bright flavour with a spicy undertone."
+  },
+  {
+    id: "dulce-de-uva",
+    name: "Dulce de Uva",
+    emoji: "🍇🥮🧃",
+    photo: "https://placehold.co/800x500?text=Dulce+de+Uva",
+    looks: null,
+    nose: null,
+    smoothness: null,
+    flavour: { citrus: 0, fruit: 3, gas: 0, earthy: 0, herbal: 0, spicy: 0, dessert: 2, pine: 0 },
+    dominant: "Grape candy sweetness.",
+    terp: "linalool + ocimene",
+    verdict: "Fruity top notes, crowd pleaser."
+  },
+  {
+    id: "mandarin-peels",
+    name: "Mandarin Peels",
+    emoji: "🍊🔥🍬",
+    photo: "https://placehold.co/800x500?text=Mandarin+Peels",
+    looks: null,
+    nose: null,
+    smoothness: null,
+    flavour: { citrus: 3, fruit: 1, gas: 1, earthy: 0, herbal: 0, spicy: 0, dessert: 2, pine: 0 },
+    dominant: "Tangy mandarin peel with candy finish.",
+    terp: "limonene + caryophyllene",
+    verdict: "Clean orange mids, sharp flavour."
+  },
+  {
+    id: "karamel-kut-throat",
+    name: "Karamel Kut Throat",
+    emoji: "🍮🔪",
+    photo: "https://placehold.co/800x500?text=Karamel+Kut+Throat",
+    looks: null,
+    nose: null,
+    smoothness: null,
+    flavour: { citrus: 0, fruit: 0, gas: 0, earthy: 0, herbal: 0, spicy: 0, dessert: 2, pine: 0 },
+    dominant: "Creamy caramel tones with a burnt sugar edge.",
+    terp: "linalool + caryophyllene",
+    verdict: "Sweet mids, smooth smoke."
   }
-  return dataCache;
+];
+
+const app = document.getElementById('app');
+const backBtn = document.getElementById('back-btn');
+const headerTitle = document.getElementById('header-title');
+
+function formatRating(val) {
+  return val == null ? '—/10' : `${val}/10`;
 }
 
-// Apply theme based on Telegram color scheme
-function setTheme() {
-  const isDark = window.Telegram && Telegram.WebApp && Telegram.WebApp.colorScheme === 'dark';
-  document.body.classList.toggle('dark', isDark);
+function dotBar(score) {
+  return '●'.repeat(score) + '○'.repeat(3 - score);
 }
 
-// Show or hide back buttons (HTML + Telegram)
+function renderFlavour(f) {
+  const order = [
+    ['citrus', 'Citrus'],
+    ['fruit', 'Fruit'],
+    ['gas', 'Gas'],
+    ['earthy', 'Earthy'],
+    ['herbal', 'Herbal'],
+    ['spicy', 'Spicy'],
+    ['dessert', 'Dessert'],
+    ['pine', 'Pine'],
+  ];
+  return order.map(([key, label]) => `${label} ${dotBar(f[key] || 0)}`).join(' | ');
+}
+
+function renderList() {
+  headerTitle.textContent = 'UK Mids Menu';
+  showBackButton(false);
+  app.innerHTML = '';
+  strains.forEach(strain => {
+    const btn = document.createElement('button');
+    btn.className = 'strain-btn';
+    btn.textContent = `${strain.emoji} ${strain.name}`;
+    btn.addEventListener('click', () => renderDetail(strain.id));
+    app.appendChild(btn);
+  });
+}
+
+function renderDetail(id) {
+  const strain = strains.find(s => s.id === id);
+  if (!strain) return;
+  headerTitle.textContent = strain.name;
+  showBackButton(true);
+  app.innerHTML = `
+    <div class="card">
+      <img src="${strain.photo}" alt="${strain.name}" class="photo" />
+      <h2>${strain.emoji} ${strain.name}</h2>
+      <p>Looks: ${formatRating(strain.looks)}</p>
+      <p>Nose: ${formatRating(strain.nose)}</p>
+      <p>Smoothness: ${formatRating(strain.smoothness)}</p>
+      <div class="flavour">${renderFlavour(strain.flavour)}</div>
+      <p><strong>Dominant:</strong> ${strain.dominant}</p>
+      <p><strong>Terp vibe:</strong> ${strain.terp}</p>
+      <p><strong>Verdict:</strong> ${strain.verdict}</p>
+    </div>
+  `;
+}
+
 function showBackButton(show) {
-  const btn = document.getElementById('back-btn');
-  if (show) {
-    btn.style.display = 'block';
-    if (window.Telegram && Telegram.WebApp && Telegram.WebApp.BackButton) {
-      Telegram.WebApp.BackButton.show();
-    }
-  } else {
-    btn.style.display = 'none';
-    if (window.Telegram && Telegram.WebApp && Telegram.WebApp.BackButton) {
-      Telegram.WebApp.BackButton.hide();
-    }
+  backBtn.style.display = show ? 'block' : 'none';
+  if (window.Telegram && Telegram.WebApp && Telegram.WebApp.BackButton) {
+    show ? Telegram.WebApp.BackButton.show() : Telegram.WebApp.BackButton.hide();
   }
 }
 
-// Navigate helper
-function go(hash) {
-  location.hash = hash;
-}
+backBtn.addEventListener('click', renderList);
 
-// Rendering based on route
-async function render() {
-  const hash = location.hash || '#/';
-  const parts = hash.slice(2).split('/');
-  const app = document.getElementById('app');
-
-  switch (parts[0]) {
-    case '':
-      showBackButton(false);
-      app.innerHTML = `
-        <div>
-          <button class="btn" id="menu-btn">VIEW OUR MENU</button>
-          <button class="btn" id="reviews-btn">REVIEWS</button>
-        </div>`;
-      document.getElementById('menu-btn').onclick = () => go('#/menu');
-      document.getElementById('reviews-btn').onclick = () => go('#/reviews');
-      break;
-    case 'menu':
-      if (parts[1]) {
-        showBackButton(true);
-        const slug = parts[1];
-        const data = await loadData();
-        const items = data.items.filter(i => i.categoryId === slug);
-        app.innerHTML = '';
-        items.forEach(item => {
-          const btn = document.createElement('button');
-          btn.className = 'btn';
-          btn.textContent = item.title;
-          btn.onclick = () => go(`#/item/${item.id}`);
-          app.appendChild(btn);
-        });
-      } else {
-        showBackButton(true);
-        const data = await loadData();
-        app.innerHTML = '';
-        data.categories.forEach(cat => {
-          const btn = document.createElement('button');
-          btn.className = 'btn';
-          btn.textContent = `${cat.emoji} ${cat.title}`;
-          btn.onclick = () => go(`#/menu/${cat.id}`);
-          app.appendChild(btn);
-        });
-      }
-      break;
-    case 'item':
-      showBackButton(true);
-      const id = parts[1];
-      const data = await loadData();
-      const item = data.items.find(i => i.id === id);
-      if (!item) {
-        app.innerHTML = '<p>Item not found.</p>';
-        return;
-      }
-      const pricesHtml = item.prices
-        .map(p => `<li>${p.label}: <strong>${p.amount}</strong></li>`)
-        .join('');
-      app.innerHTML = `
-        <div class="center">
-          <img src="${item.image}" alt="${item.title}" class="product-image" />
-          <h2>${item.title}</h2>
-          <p>${item.description}</p>
-          <ul class="prices">${pricesHtml}</ul>
-        </div>`;
-      break;
-    case 'reviews':
-      showBackButton(true);
-      app.innerHTML = '<p class="center">Reviews coming soon.</p>';
-      break;
-    default:
-      go('#/');
+function setTheme() {
+  if (window.Telegram && Telegram.WebApp) {
+    document.body.classList.toggle('dark', Telegram.WebApp.colorScheme === 'dark');
   }
 }
 
-window.addEventListener('hashchange', render);
-
-document.getElementById('back-btn').addEventListener('click', () => history.back());
-
-// Telegram initialization
 if (window.Telegram && Telegram.WebApp) {
   Telegram.WebApp.ready();
   Telegram.WebApp.expand();
   Telegram.WebApp.onEvent('themeChanged', setTheme);
-  Telegram.WebApp.onEvent('backButtonClicked', () => history.back());
+  Telegram.WebApp.onEvent('backButtonClicked', renderList);
 }
 
 setTheme();
-render();
+renderList();
+
