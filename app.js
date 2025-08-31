@@ -1,3 +1,6 @@
+import { categories, items, infoPages } from './data/menu-config.js';
+import { init, navigate, back } from './scripts/router.js';
+
 const strains = [
   {
     id: "peanut-butter-breath",
@@ -83,6 +86,12 @@ const app = document.getElementById('app');
 const backBtn = document.getElementById('back-btn');
 const headerTitle = document.getElementById('header-title');
 
+const allItems = {};
+strains.forEach(s => allItems[s.id] = s);
+Object.values(items).forEach(arr => {
+  arr.forEach(i => { if (i.id) allItems[i.id] = i; });
+});
+
 function formatRating(val) {
   return val == null ? '—/10' : `${val}/10`;
 }
@@ -109,17 +118,82 @@ function renderList() {
   headerTitle.textContent = 'UK Mids Menu';
   showBackButton(false);
   app.innerHTML = '';
+
+  const menuBtn = document.createElement('button');
+  menuBtn.className = 'strain-btn';
+  menuBtn.textContent = 'OUR MENU';
+  menuBtn.addEventListener('click', () => navigate('menu'));
+  app.appendChild(menuBtn);
+
+  const reviewsBtn = document.createElement('button');
+  reviewsBtn.className = 'strain-btn';
+  reviewsBtn.textContent = 'REVIEWS';
+  reviewsBtn.addEventListener('click', () => navigate('reviews'));
+  app.appendChild(reviewsBtn);
+
   strains.forEach(strain => {
     const btn = document.createElement('button');
     btn.className = 'strain-btn';
     btn.textContent = `${strain.emoji} ${strain.name}`;
-    btn.addEventListener('click', () => renderDetail(strain.id));
+    btn.addEventListener('click', () => navigate(`detail:${strain.id}`));
     app.appendChild(btn);
   });
 }
 
+function renderMenu() {
+  headerTitle.textContent = 'OUR MENU';
+  showBackButton(true);
+  app.innerHTML = '';
+  categories.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'strain-btn';
+    btn.textContent = cat.label;
+    btn.addEventListener('click', () => {
+      if (cat.type === 'info') {
+        navigate(`info:${cat.key}`);
+      } else if (cat.key === 'uk_mids') {
+        navigate('uk_mids_list');
+      } else {
+        navigate(`${cat.key}_list`);
+      }
+    });
+    app.appendChild(btn);
+  });
+}
+
+function renderCategory(key) {
+  const cat = categories.find(c => c.key === key);
+  headerTitle.textContent = cat ? cat.label : '';
+  showBackButton(true);
+  app.innerHTML = '';
+  (items[key] || []).forEach(item => {
+    const btn = document.createElement('button');
+    btn.className = 'strain-btn';
+    btn.textContent = `${item.emoji ? item.emoji + ' ' : ''}${item.name}`;
+    if (item.disabled) {
+      btn.disabled = true;
+    } else {
+      btn.addEventListener('click', () => navigate(`detail:${item.id}`));
+    }
+    app.appendChild(btn);
+  });
+}
+
+function renderInfo(key) {
+  const cat = categories.find(c => c.key === key);
+  headerTitle.textContent = cat ? cat.label : '';
+  showBackButton(true);
+  app.innerHTML = `<div class="card">${infoPages[key] || '<p>Coming soon</p>'}</div>`;
+}
+
+function renderReviews() {
+  headerTitle.textContent = 'REVIEWS';
+  showBackButton(true);
+  app.innerHTML = '<div class="card"><p>Coming soon</p></div>';
+}
+
 function renderDetail(id) {
-  const strain = strains.find(s => s.id === id);
+  const strain = allItems[id];
   if (!strain) return;
   headerTitle.textContent = strain.name;
   showBackButton(true);
@@ -145,7 +219,7 @@ function showBackButton(show) {
   }
 }
 
-backBtn.addEventListener('click', renderList);
+backBtn.addEventListener('click', back);
 
 function setTheme() {
   if (window.Telegram && Telegram.WebApp) {
@@ -157,9 +231,25 @@ if (window.Telegram && Telegram.WebApp) {
   Telegram.WebApp.ready();
   Telegram.WebApp.expand();
   Telegram.WebApp.onEvent('themeChanged', setTheme);
-  Telegram.WebApp.onEvent('backButtonClicked', renderList);
+  Telegram.WebApp.onEvent('backButtonClicked', back);
+}
+
+function renderRoute(route) {
+  if (route === 'uk_mids_list') {
+    renderList();
+  } else if (route === 'menu') {
+    renderMenu();
+  } else if (route === 'reviews') {
+    renderReviews();
+  } else if (route.endsWith('_list')) {
+    renderCategory(route.replace('_list', ''));
+  } else if (route.startsWith('info:')) {
+    renderInfo(route.split(':')[1]);
+  } else if (route.startsWith('detail:')) {
+    renderDetail(route.slice(7));
+  }
 }
 
 setTheme();
-renderList();
+init(renderRoute, 'uk_mids_list');
 
