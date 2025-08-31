@@ -114,8 +114,8 @@ function renderFlavour(f) {
   return order.map(([key, label]) => `${label} ${dotBar(f[key] || 0)}`).join(' | ');
 }
 
-function renderList() {
-  headerTitle.textContent = 'UK Mids Menu';
+function renderHome() {
+  headerTitle.textContent = 'Boxed Menu';
   showBackButton(false);
   app.innerHTML = '';
 
@@ -130,6 +130,12 @@ function renderList() {
   reviewsBtn.textContent = 'REVIEWS';
   reviewsBtn.addEventListener('click', () => navigate('reviews'));
   app.appendChild(reviewsBtn);
+}
+
+function renderList() {
+  headerTitle.textContent = 'UK Mids Menu';
+  showBackButton(false);
+  app.innerHTML = '';
 
   strains.forEach(strain => {
     const btn = document.createElement('button');
@@ -235,7 +241,9 @@ if (window.Telegram && Telegram.WebApp) {
 }
 
 function renderRoute(route) {
-  if (route === 'uk_mids_list') {
+  if (route === 'home') {
+    renderHome();
+  } else if (route === 'uk_mids_list') {
     renderList();
   } else if (route === 'menu') {
     renderMenu();
@@ -251,5 +259,5 @@ function renderRoute(route) {
 }
 
 setTheme();
-init(renderRoute, 'uk_mids_list');
+init(renderRoute, 'home');
 
