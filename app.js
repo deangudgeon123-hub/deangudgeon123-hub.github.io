@@ -143,8 +143,8 @@ function renderHome() {
 
 function renderList() {
   headerTitle.textContent = 'UK Mids Menu';
-  const goHome = () => navigate('home');
-  showBackButton(true, goHome);
+  const goMenu = () => navigate('menu');
+  showBackButton(true, goMenu);
   backBtn.textContent = '◀︎';
   app.innerHTML = '';
 
@@ -162,11 +162,11 @@ function renderList() {
   backHome.tabIndex = 0;
   backHome.textContent = '⬅️ Back to Menu';
   backHome.style.marginTop = '16px';
-  backHome.addEventListener('click', goHome);
+  backHome.addEventListener('click', goMenu);
   backHome.addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      goHome();
+      goMenu();
     }
   });
   app.appendChild(backHome);
