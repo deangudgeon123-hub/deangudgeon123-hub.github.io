@@ -130,20 +130,22 @@ function renderHome() {
 
   const menuBtn = document.createElement('button');
   menuBtn.className = 'strain-btn';
-  menuBtn.textContent = 'OUR MENU';
+  menuBtn.textContent = '🌿 OUR MENU 🌿';
   menuBtn.addEventListener('click', () => navigate('menu'));
   app.appendChild(menuBtn);
 
   const reviewsBtn = document.createElement('button');
   reviewsBtn.className = 'strain-btn';
-  reviewsBtn.textContent = 'REVIEWS';
+  reviewsBtn.textContent = '📈 REVIEWS 📈';
   reviewsBtn.addEventListener('click', () => navigate('reviews'));
   app.appendChild(reviewsBtn);
 }
 
 function renderList() {
   headerTitle.textContent = 'UK Mids Menu';
-  showBackButton(false);
+  const goHome = () => navigate('home');
+  showBackButton(true, goHome);
+  backBtn.textContent = '◀︎';
   app.innerHTML = '';
 
   strains.forEach(strain => {
@@ -153,6 +155,21 @@ function renderList() {
     btn.addEventListener('click', () => navigate(`detail:${strain.id}`));
     app.appendChild(btn);
   });
+
+  const backHome = document.createElement('div');
+  backHome.className = 'strain-btn';
+  backHome.setAttribute('role', 'button');
+  backHome.tabIndex = 0;
+  backHome.textContent = '⬅️ Back to Menu';
+  backHome.style.marginTop = '16px';
+  backHome.addEventListener('click', goHome);
+  backHome.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      goHome();
+    }
+  });
+  app.appendChild(backHome);
 }
 
 function renderMenu() {
@@ -240,14 +257,14 @@ function renderDetail(id) {
   `;
 }
 
-function showBackButton(show) {
+function showBackButton(show, handler = back) {
   backBtn.style.display = show ? 'block' : 'none';
+  backBtn.onclick = handler;
   if (window.Telegram && Telegram.WebApp && Telegram.WebApp.BackButton) {
+    Telegram.WebApp.BackButton.onClick(handler);
     show ? Telegram.WebApp.BackButton.show() : Telegram.WebApp.BackButton.hide();
   }
 }
-
-backBtn.addEventListener('click', back);
 
 function setTheme() {
   if (window.Telegram && Telegram.WebApp) {
@@ -259,7 +276,6 @@ if (window.Telegram && Telegram.WebApp) {
   Telegram.WebApp.ready();
   Telegram.WebApp.expand();
   Telegram.WebApp.onEvent('themeChanged', setTheme);
-  Telegram.WebApp.onEvent('backButtonClicked', back);
 }
 
 function renderRoute(route) {
