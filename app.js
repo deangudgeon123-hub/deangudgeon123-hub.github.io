@@ -7,6 +7,7 @@ const strains = [
     name: "Peanut Butter Breath",
     emoji: "🥜🍞😮‍💨",
     photo: "https://placehold.co/800x500?text=Peanut+Butter+Breath",
+    video: "/videos/peanut-butter-breath.mp4",
     looks: null,
     nose: null,
     smoothness: null,
@@ -205,7 +206,12 @@ function renderDetail(id) {
   showBackButton(true);
   app.innerHTML = `
     <div class="card">
-      <img src="${strain.photo}" alt="${strain.name}" class="photo" />
+      ${strain.video ? `
+        <video autoplay loop muted playsinline class="photo">
+          <source src="${strain.video}" type="video/mp4" />
+          <img src="${strain.photo}" alt="${strain.name}" class="photo" />
+        </video>
+      ` : `<img src="${strain.photo}" alt="${strain.name}" class="photo" />`}
       <h2>${strain.emoji} ${strain.name}</h2>
       <p>Looks: ${formatRating(strain.looks)}</p>
       <p>Nose: ${formatRating(strain.nose)}</p>
