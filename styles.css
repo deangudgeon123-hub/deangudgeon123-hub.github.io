@@ -96,4 +96,13 @@ main {
   margin-top: auto;
 }
 
+.strain-media {
+  width: 100%;
+  max-height: 260px;
+  display: block;
+  border-radius: 12px;
+  background: #e9eaee;
+  object-fit: cover;
+}
+
 
