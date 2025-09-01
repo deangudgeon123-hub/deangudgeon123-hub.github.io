@@ -1,5 +1,12 @@
 import { categories, items, infoPages } from './data/menu-config.js';
-import { init, navigate, back } from './scripts/router.js';
+import { init, navigate, back, go } from './scripts/router.js';
+
+const ROUTE_LANDING = 'home';
+const ROUTE_MENU = 'menu';
+const ROUTE_REVIEWS = 'reviews';
+const ROUTE_UKMIDS = 'uk_mids_list';
+
+let currentCategoryRoute = null;
 
 const strains = [
   {
@@ -126,26 +133,26 @@ function renderFlavour(f) {
 function renderHome() {
   headerTitle.textContent = 'Boxed Menu';
   showBackButton(false);
+  currentCategoryRoute = null;
   app.innerHTML = '';
 
   const menuBtn = document.createElement('button');
   menuBtn.className = 'strain-btn';
   menuBtn.textContent = '🌿 OUR MENU 🌿';
-  menuBtn.addEventListener('click', () => navigate('menu'));
+  menuBtn.addEventListener('click', () => navigate(ROUTE_MENU));
   app.appendChild(menuBtn);
 
   const reviewsBtn = document.createElement('button');
   reviewsBtn.className = 'strain-btn';
   reviewsBtn.textContent = '📈 REVIEWS 📈';
-  reviewsBtn.addEventListener('click', () => navigate('reviews'));
+  reviewsBtn.addEventListener('click', () => navigate(ROUTE_REVIEWS));
   app.appendChild(reviewsBtn);
 }
 
 function renderList() {
   headerTitle.textContent = 'UK Mids Menu';
-  const goMenu = () => navigate('menu');
-  showBackButton(true, goMenu);
-  backBtn.textContent = '◀︎';
+  currentCategoryRoute = ROUTE_UKMIDS;
+  showBackButton(true, () => go(ROUTE_MENU));
   app.innerHTML = '';
 
   strains.forEach(strain => {
@@ -155,26 +162,12 @@ function renderList() {
     btn.addEventListener('click', () => navigate(`detail:${strain.id}`));
     app.appendChild(btn);
   });
-
-  const backHome = document.createElement('div');
-  backHome.className = 'strain-btn';
-  backHome.setAttribute('role', 'button');
-  backHome.tabIndex = 0;
-  backHome.textContent = '⬅️ Back to Menu';
-  backHome.style.marginTop = '16px';
-  backHome.addEventListener('click', goMenu);
-  backHome.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      goMenu();
-    }
-  });
-  app.appendChild(backHome);
 }
 
 function renderMenu() {
   headerTitle.textContent = 'OUR MENU';
-  showBackButton(true);
+  showBackButton(true, () => go(ROUTE_LANDING));
+  currentCategoryRoute = null;
   app.innerHTML = '';
   categories.forEach(cat => {
     const btn = document.createElement('button');
@@ -196,14 +189,16 @@ function renderMenu() {
 function renderCategory(key) {
   const cat = categories.find(c => c.key === key);
   headerTitle.textContent = cat ? cat.label : '';
-  showBackButton(true);
+  currentCategoryRoute = `${key}_list`;
+  showBackButton(true, () => go(ROUTE_MENU));
   app.innerHTML = '';
   (items[key] || []).forEach(item => {
     const btn = document.createElement('button');
     btn.className = 'strain-btn';
     btn.textContent = `${item.emoji ? item.emoji + ' ' : ''}${item.name}`;
     if (item.disabled) {
-      btn.disabled = true;
+      btn.setAttribute('aria-disabled', 'true');
+      btn.classList.add('is-restocking');
     } else {
       btn.addEventListener('click', () => navigate(`detail:${item.id}`));
     }
@@ -214,13 +209,15 @@ function renderCategory(key) {
 function renderInfo(key) {
   const cat = categories.find(c => c.key === key);
   headerTitle.textContent = cat ? cat.label : '';
-  showBackButton(true);
+  showBackButton(true, () => go(ROUTE_MENU));
+  currentCategoryRoute = null;
   app.innerHTML = `<div class="card">${infoPages[key] || '<p>Coming soon</p>'}</div>`;
 }
 
 function renderReviews() {
   headerTitle.textContent = 'REVIEWS';
-  showBackButton(true);
+  showBackButton(true, () => go(ROUTE_LANDING));
+  currentCategoryRoute = null;
   app.innerHTML = '<div class="card"><p>Coming soon</p></div>';
 }
 
@@ -228,7 +225,7 @@ function renderDetail(id) {
   const strain = allItems[id];
   if (!strain) return;
   headerTitle.textContent = strain.name;
-  showBackButton(true);
+  showBackButton(true, () => go(currentCategoryRoute || ROUTE_MENU));
   app.innerHTML = `
     <div class="card">
       ${strain.video ? `

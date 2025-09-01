@@ -106,4 +106,12 @@ main {
   margin-bottom: 16px;
 }
 
+.is-restocking {
+  opacity: 1;
+  color: inherit;
+  background: var(--button-bg);
+  pointer-events: none;
+  cursor: default;
+}
+
 

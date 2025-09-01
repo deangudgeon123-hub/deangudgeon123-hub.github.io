@@ -11,10 +11,10 @@ export const categories = [
 
 export const items = {
   uk_tops: [
-    { name: 'Restocking…', disabled: true }
+      { name: 'Restocking', disabled: true }
   ],
   cali_packs: [
-    { name: 'Restocking…', disabled: true }
+      { name: 'Restocking', disabled: true }
   ],
   extracts: [
     {
@@ -47,7 +47,7 @@ export const items = {
     }
   ],
   edibles: [
-    { name: 'Restocking…', disabled: true }
+      { name: 'Restocking', disabled: true }
   ]
 };
 
