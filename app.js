@@ -117,7 +117,10 @@ function renderFlavour(f) {
     ['dessert', 'Dessert'],
     ['pine', 'Pine'],
   ];
-  return order.map(([key, label]) => `${label} ${dotBar(f[key] || 0)}`).join(' | ');
+  return order
+    .filter(([key]) => (f[key] || 0) > 0)
+    .map(([key, label]) => `${label} ${dotBar(f[key])}`)
+    .join(' | ');
 }
 
 function renderHome() {
@@ -232,6 +235,7 @@ function renderDetail(id) {
       <p><strong>Dominant:</strong> ${strain.dominant}</p>
       <p><strong>Terp vibe:</strong> ${strain.terp}</p>
       <p><strong>Verdict:</strong> ${strain.verdict}</p>
+      <p style="margin-top:12px;"><strong>Weights 💸</strong><br>£45 – 3.5g<br>£80 – 7g<br>£120 – 14g<br>DM for Zs and up</p>
     </div>
   `;
 }
