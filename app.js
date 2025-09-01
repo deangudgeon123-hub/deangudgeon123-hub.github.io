@@ -21,6 +21,7 @@ const strains = [
     name: "Black Maple",
     emoji: "⚫🍁🍯",
     photo: "https://placehold.co/800x500?text=Black+Maple",
+    video: "/videos/black-maple.mp4",
     looks: null,
     nose: null,
     smoothness: null,
@@ -34,6 +35,7 @@ const strains = [
     name: "Miami Vice",
     emoji: "🏙️🌴🔥",
     photo: "https://placehold.co/800x500?text=Miami+Vice",
+    video: "/videos/miami-vice.mp4",
     looks: null,
     nose: null,
     smoothness: null,
@@ -47,6 +49,7 @@ const strains = [
     name: "Dulce de Uva",
     emoji: "🍇🥮🧃",
     photo: "https://placehold.co/800x500?text=Dulce+de+Uva",
+    video: "/videos/dulce-de-uva.mp4",
     looks: null,
     nose: null,
     smoothness: null,
@@ -60,6 +63,7 @@ const strains = [
     name: "Mandarin Peels",
     emoji: "🍊🔥🍬",
     photo: "https://placehold.co/800x500?text=Mandarin+Peels",
+    video: "/videos/mandarin-peels.mp4",
     looks: null,
     nose: null,
     smoothness: null,
@@ -73,6 +77,7 @@ const strains = [
     name: "Karamel Kut Throat",
     emoji: "🍮🔪",
     photo: "https://placehold.co/800x500?text=Karamel+Kut+Throat",
+    video: "/videos/karamel-kut-throat.mp4",
     looks: null,
     nose: null,
     smoothness: null,
@@ -207,9 +212,16 @@ function renderDetail(id) {
   app.innerHTML = `
     <div class="card">
       ${strain.video ? `
-        <video autoplay loop muted playsinline class="photo">
+        <video
+          class="strain-media"
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="metadata"
+        >
           <source src="${strain.video}" type="video/mp4" />
-          <img src="${strain.photo}" alt="${strain.name}" class="photo" />
+          <img src="/images/placeholder.png" alt="Preview unavailable" />
         </video>
       ` : `<img src="${strain.photo}" alt="${strain.name}" class="photo" />`}
       <h2>${strain.emoji} ${strain.name}</h2>
